@@ -1,0 +1,317 @@
+---
+title: "Assignment 5: Working with APIs"
+author: "Michal Heydel"
+date: "05/11/2017"
+output: github_document
+---
+
+## Instructions
+
+This file (`Assignment-5.Rmd`) is an RMarkdown file, which is slightly different from a Jupyter notebook.  You will need to open it within [RStudio](https://www.rstudio.com), and compile it to a Markdown file using the **knitr** package.  From RStudio, this is the "Knit" button that appears in the top edge of your Source pane.  When you knit it, `R` will execute the code in your code blocks, and render the output as formatted Markdown (in this example it will `generate Assignment-5.md`).  
+
+There are plenty of instructions about how to use RMarkdown, such as [these](http://rmarkdown.rstudio.com/authoring_rcodechunks.html).  If you define a code block using Python, then any code within that block will be executed in Python.  It works with [other languages](http://rmarkdown.rstudio.com/authoring_knitr_engines.html) too.  
+
+#### Deadline: Wednesday 5pm, 8 November
+
+## Part A: Working with APIs (20 points)
+
+1.  Try using `curl` to get a website from `http://www.example.com`.  This one is provided for you, as an example.  On Windows, you might need to change the language engine to something other than bash.  (See http://rmarkdown.rstudio.com/authoring_knitr_engines.html#bash)
+```{r}
+# I have done it also in command Prompt in Windows
+library(curl)
+readLines(curl("http://www.example.com"))
+
+```
+
+
+
+2.  Get the information from the [GitHub API](https://developer.github.com/v3/repos/#get) about the [`lse-st445/lectures`](https://github.com/lse-st445/lectures) repository.  You will need to use `curl` for this, but you are welcome to use the [**RCurl**](https://cran.r-project.org/web/packages/RCurl/index.html) package for R, or the [PycURL](http://pycurl.io/docs/latest/) module for Python to do this.  The examples below give you the starter code you need for the R solution.
+
+    Hint: Part of the URL will be `repos/lse-st445`.
+    
+```{r}
+readLines(curl("https://api.github.com/repos/lse-st445/lectures"))
+```
+
+```{r}
+# INPUT:
+# C:\Users\Michal>curl https://api.github.com/repos/lse-st445/lectures
+#
+#  OUTPUT:
+# {
+#   "id": 102475502,
+#   "name": "lectures",
+#   "full_name": "lse-st445/lectures",
+#   "owner": {
+#     "login": "lse-st445",
+#     "id": 31655282,
+#     "avatar_url": "https://avatars0.githubusercontent.com/u/31655282?v=4",
+#     "gravatar_id": "",
+#     "url": "https://api.github.com/users/lse-st445",
+#     "html_url": "https://github.com/lse-st445",
+#     "followers_url": "https://api.github.com/users/lse-st445/followers",
+#     "following_url": "https://api.github.com/users/lse-st445/following{/other_user}",
+#     "gists_url": "https://api.github.com/users/lse-st445/gists{/gist_id}",
+#     "starred_url": "https://api.github.com/users/lse-st445/starred{/owner}{/repo}",
+#     "subscriptions_url": "https://api.github.com/users/lse-st445/subscriptions",
+#     "organizations_url": "https://api.github.com/users/lse-st445/orgs",
+#     "repos_url": "https://api.github.com/users/lse-st445/repos",
+#     "events_url": "https://api.github.com/users/lse-st445/events{/privacy}",
+#     "received_events_url": "https://api.github.com/users/lse-st445/received_events",
+#     "type": "Organization",
+#     "site_admin": false
+#   },
+#   "private": false,
+#   "html_url": "https://github.com/lse-st445/lectures",
+#   "description": "ST445 Managing and Visualizing Data",
+#   "fork": false,
+#   "url": "https://api.github.com/repos/lse-st445/lectures",
+#   "forks_url": "https://api.github.com/repos/lse-st445/lectures/forks",
+#   "keys_url": "https://api.github.com/repos/lse-st445/lectures/keys{/key_id}",
+#   "collaborators_url": "https://api.github.com/repos/lse-st445/lectures/collaborators{/collaborator}",
+#   "teams_url": "https://api.github.com/repos/lse-st445/lectures/teams",
+#   "hooks_url": "https://api.github.com/repos/lse-st445/lectures/hooks",
+#   "issue_events_url": "https://api.github.com/repos/lse-st445/lectures/issues/events{/number}",
+#   "events_url": "https://api.github.com/repos/lse-st445/lectures/events",
+#   "assignees_url": "https://api.github.com/repos/lse-st445/lectures/assignees{/user}",
+#   "branches_url": "https://api.github.com/repos/lse-st445/lectures/branches{/branch}",
+#   "tags_url": "https://api.github.com/repos/lse-st445/lectures/tags",
+#   "blobs_url": "https://api.github.com/repos/lse-st445/lectures/git/blobs{/sha}",
+#   "git_tags_url": "https://api.github.com/repos/lse-st445/lectures/git/tags{/sha}",
+#   "git_refs_url": "https://api.github.com/repos/lse-st445/lectures/git/refs{/sha}",
+#   "trees_url": "https://api.github.com/repos/lse-st445/lectures/git/trees{/sha}",
+#   "statuses_url": "https://api.github.com/repos/lse-st445/lectures/statuses/{sha}",
+#   "languages_url": "https://api.github.com/repos/lse-st445/lectures/languages",
+#   "stargazers_url": "https://api.github.com/repos/lse-st445/lectures/stargazers",
+#   "contributors_url": "https://api.github.com/repos/lse-st445/lectures/contributors",
+#   "subscribers_url": "https://api.github.com/repos/lse-st445/lectures/subscribers",
+#   "subscription_url": "https://api.github.com/repos/lse-st445/lectures/subscription",
+#   "commits_url": "https://api.github.com/repos/lse-st445/lectures/commits{/sha}",
+#   "git_commits_url": "https://api.github.com/repos/lse-st445/lectures/git/commits{/sha}",
+#   "comments_url": "https://api.github.com/repos/lse-st445/lectures/comments{/number}",
+#   "issue_comment_url": "https://api.github.com/repos/lse-st445/lectures/issues/comments{/number}",
+#   "contents_url": "https://api.github.com/repos/lse-st445/lectures/contents/{+path}",
+#   "compare_url": "https://api.github.com/repos/lse-st445/lectures/compare/{base}...{head}",
+#   "merges_url": "https://api.github.com/repos/lse-st445/lectures/merges",
+#   "archive_url": "https://api.github.com/repos/lse-st445/lectures/{archive_format}{/ref}",
+#   "downloads_url": "https://api.github.com/repos/lse-st445/lectures/downloads",
+#   "issues_url": "https://api.github.com/repos/lse-st445/lectures/issues{/number}",
+#   "pulls_url": "https://api.github.com/repos/lse-st445/lectures/pulls{/number}",
+#   "milestones_url": "https://api.github.com/repos/lse-st445/lectures/milestones{/number}",
+#   "notifications_url": "https://api.github.com/repos/lse-st445/lectures/notifications{?since,all,participating}",
+#   "labels_url": "https://api.github.com/repos/lse-st445/lectures/labels{/name}",
+#   "releases_url": "https://api.github.com/repos/lse-st445/lectures/releases{/id}",
+#   "deployments_url": "https://api.github.com/repos/lse-st445/lectures/deployments",
+#   "created_at": "2017-09-05T11:56:33Z",
+#   "updated_at": "2017-10-12T05:25:05Z",
+#   "pushed_at": "2017-10-26T07:07:52Z",
+#   "git_url": "git://github.com/lse-st445/lectures.git",
+#   "ssh_url": "git@github.com:lse-st445/lectures.git",
+#   "clone_url": "https://github.com/lse-st445/lectures.git",
+#   "svn_url": "https://github.com/lse-st445/lectures",
+#   "homepage": "",
+#   "size": 19960,
+#   "stargazers_count": 6,
+#   "watchers_count": 6,
+#   "language": "Jupyter Notebook",
+#   "has_issues": true,
+#   "has_projects": true,
+#   "has_downloads": true,
+#   "has_wiki": true,
+#   "has_pages": false,
+#   "forks_count": 18,
+#   "mirror_url": null,
+#   "archived": false,
+#   "open_issues_count": 1,
+#   "forks": 18,
+#   "open_issues": 1,
+#   "watchers": 6,
+#   "default_branch": "master",
+#   "organization": {
+#     "login": "lse-st445",
+#     "id": 31655282,
+#     "avatar_url": "https://avatars0.githubusercontent.com/u/31655282?v=4",
+#     "gravatar_id": "",
+#     "url": "https://api.github.com/users/lse-st445",
+#     "html_url": "https://github.com/lse-st445",
+#     "followers_url": "https://api.github.com/users/lse-st445/followers",
+#     "following_url": "https://api.github.com/users/lse-st445/following{/other_user}",
+#     "gists_url": "https://api.github.com/users/lse-st445/gists{/gist_id}",
+#     "starred_url": "https://api.github.com/users/lse-st445/starred{/owner}{/repo}",
+#     "subscriptions_url": "https://api.github.com/users/lse-st445/subscriptions",
+#     "organizations_url": "https://api.github.com/users/lse-st445/orgs",
+#     "repos_url": "https://api.github.com/users/lse-st445/repos",
+#     "events_url": "https://api.github.com/users/lse-st445/events{/privacy}",
+#     "received_events_url": "https://api.github.com/users/lse-st445/received_events",
+#     "type": "Organization",
+#     "site_admin": false
+#   },
+#   "network_count": 18,
+#   "subscribers_count": 3
+# }
+
+```
+
+
+    
+## Part B: Working with Twitter Data (50 points)
+
+1.  Use the **twitteR** package for R to look up the last 2,000 Tweets from [Donald Trump's Twitter feed](https://twitter.com/realDonaldTrump).  Save the output to an object called `trump_tweets`, as a data.frame.
+
+    (Note that in the code block, you will need to change the `eval = FALSE` to `eval = TRUE`.)
+
+
+```{r, eval = TRUE}
+suppressPackageStartupMessages(library(twitteR))
+# replace with your credentials
+api_key <- "OWea1JDj2RMgv9ktXcKkM3CRI"
+api_secret <- "zolroSpEUpqFrTABaVHttXDYrKAIWBBGPpFjXZ5j4r201obVWq"
+access_token <- "927171157018759173-tqtWOcZMkWsnCvUToWsR3W0qSp64jwm"
+access_token_secret <- "qMvXFuUpsnZD3b2TB1O49aGLSU6p607hDBnzkaYCdJWxR"
+    
+# authorize the Twitter access
+setup_twitter_oauth(api_key, api_secret, access_token, access_token_secret)
+    
+# use userTimeline()
+tw <- userTimeline("realDonaldTrump", n = 2000, includeRts = TRUE)
+
+# use the command from lecture notes to convert result into a data.frame
+twDf <- twListToDF(tw)
+```
+2.  Display the output of the first 20 Tweets.  What sort of returned information is in the result?
+
+```{r}
+suppressPackageStartupMessages(library(stringi))
+suppressPackageStartupMessages(library(stringr))
+#twDf[["text"]] <- stri_enc_toascii(twDf[["text"]])
+twDf[1:20, ]
+names(twDf) # text of the tweet, Have i favorite it, How many favorites, the location it was sent from, the device it was sent from and much more 
+# https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/tweet-object
+```
+
+
+
+
+3.  How could we convert the information about the device into a simpler variable, containing just the device?
+```{r}
+suppressPackageStartupMessages(library(dplyr))
+twDf$statusSource <- unlist(str_extract_all(twDf$statusSource, "(?<=>)(.*)(?=<)" ))
+
+colnames(twDf)[10] = "device"
+```
+
+```{r}
+Source_DT <- table(twDf$device)
+Source_DT
+```
+
+
+4.  Use the **quanteda** package to save this to a corpus object, look up the result using the Lexicoder Sentiment dictionary (see `?data_dictionary_LSD2015), and plot the positive versus negative balance using a barplot.
+
+    ```{r, eval = TRUE}
+suppressPackageStartupMessages(library("quanteda"))
+trump_corpus <- corpus(twDf)
+device = docvars(trump_corpus, "device") 
+trump_sentiment <- dfm(trump_corpus, groups = device, dictionary = data_dictionary_LSD2015[1:2])
+    
+# plot a barplot of positive versus negative
+trump_sentiment   
+```
+```{r}
+library(ggplot2)
+data_plot <- as.data.frame(trump_sentiment)
+data_plot$device <- rownames(data_plot)
+```
+```{r}
+library(reshape2)
+
+data_plot_long <- melt(data_plot, id.vars="device", variable.name="State" )
+
+ggplot(data = data_plot_long, aes(x = device, y = value, fill = State) ) + 
+  geom_bar(stat="identity", position = position_dodge()) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(y = "Number of words", x = "Device Name") +
+  ggtitle("Donald Trump tweets, positive or negative statements?")
+```
+
+
+
+
+## Part C: Working with Facebook Data (30 points)
+
+1.  Access the last 20 Facebook posts from [Donald Trump's public page](https://www.facebook.com/DonaldTrump/).  You can find starter code [here](https://github.com/kbenoit/ITAUR/blob/master/6_advanced/social_media_example.R), and you can use this to follow the examples.
+```{r}
+suppressPackageStartupMessages(library(Rfacebook))
+suppressPackageStartupMessages(library(quanteda))   
+```
+
+```{r}
+
+# Access token: https://developers.facebook.com/tools/explorer/
+token <- "EAACEdEose0cBAGbYoMUZAij52MkZAbwz7OFEi7Ig7B9REiI0DwLgSED2NkLPJQWoXZBI4xp5NvGbZAHlAi50QFm0kFeeAj3Gb1Mksgeu6Y1k079HqU3JMQgQIwpeESv24ZC7A5hfZBhjy1iGfDsLxZAQQmZAlkFNJccvwMwwPrjj5DVhuZCGbDJhu6qqzPzkT8XztlxA4KZBx1BAZDZD"
+    
+# use getPage() here
+
+Donald_Trump <- getPage('DonaldTrump', token = token, n = 200)
+```
+    
+2.  Display the first 5 posts.
+```{r}
+head(Donald_Trump,5)
+```
+
+
+3.  (Extra credit)  Do some analysis, plot, or any other analytics with the data from 1 and 2.  You can follow the `social_media_example.R` linked above for inspiration, or even reproduce that.
+```{r}
+
+colnames(Donald_Trump)[3]= "text"
+#summary(Donald_Trump)
+fbcorpus <- corpus(Donald_Trump)
+#summary(fbcorpus)
+
+fb_type = docvars(fbcorpus, "type")
+trump_type = dfm(fbcorpus, groups = fb_type, dictionary = data_dictionary_LSD2015[1:2])
+trump_type
+```
+```{r}
+library(ggplot2)
+library(reshape2)
+data_type <- as.data.frame(trump_type)
+data_type$type <- rownames(trump_type)
+```
+
+```{r}
+
+
+data_type_long <- melt(data_type, id.vars="type", variable.name="State" )
+
+ggplot(data = data_type_long, aes(x = type, y = value, fill = State) ) + 
+  geom_bar(stat="identity", position = position_dodge()) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(y = "Number of words", x = "Type of post") +
+  ggtitle("Donald Trump facebook post, positive or negative statements?")
+```
+
+
+
+```{r}
+fb_likes = docvars(fbcorpus, "likes_count")
+trump_likes = dfm(fbcorpus, groups = fb_likes, dictionary = data_dictionary_LSD2015[1:2])
+trump_likes
+```
+```{r}
+data_likes <- as.data.frame(trump_likes)
+data_likes$likes_count <- rownames(data_likes)
+data_likes$total_emotions <- data_likes$positive + data_likes$negative
+
+
+par(mfrow=c(1,3))
+
+plot(data_likes$negative ,data_likes$likes_count)
+plot(data_likes$positive ,data_likes$likes_count)
+plot(data_likes$total_emotions ,data_likes$likes_count)
+
+# cannot see any linear relationship - no sense for any linear model
+```
+
+
