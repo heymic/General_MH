@@ -9,6 +9,6 @@ These are the public projects of [Michal Heydel](mailto:heydel.michal@gmail.com)
    * individual project
 3) Wikipedia Revertion study for [MY470 Module: Computer programming](http://www.lse.ac.uk/resources/Calendar/courseGuides/MY/2017_MY470.htm)
    * individual project
-4) Simple Sentiment Analysis for ST445 Module: Data Managing and Visualizing Data
+4) Simple Sentiment Analysis for [ST445 Module: Data Managing and Visualizing Data](http://www.lse.ac.uk/resources/calendar/courseGuides/ST/2017_ST445.htm)
    * individual project
 
