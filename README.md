@@ -11,4 +11,5 @@ These are the public projects of [Michal Heydel](mailto:heydel.michal@gmail.com)
    * individual project
 4) Simple Sentiment Analysis for [ST445 Module: Data Managing and Visualizing Data](http://www.lse.ac.uk/resources/calendar/courseGuides/ST/2017_ST445.htm)
    * individual project
-
+5) Dimensionality Reduction for [ST445 Module: Data Managing and Visualizing Data](http://www.lse.ac.uk/resources/calendar/courseGuides/ST/2017_ST445.htm)
+   * class activity
